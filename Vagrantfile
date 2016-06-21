@@ -27,7 +27,7 @@ OS=centos7
 HDP_VERSION=2.4.2.0
 AMBARI_VERSION=2.2.2.0
 HDP_UTILS_VERSION=1.1.0.20
-REPO_BASE=hdp0.lab.local
+REPO_BASE=repo.hdp.local
 
 AMBARI_REPO_URL=http://public-repo-1.hortonworks.com/ambari/$OS/2.x/updates/$AMBARI_VERSION/ambari.repo
 HDP_REPO_URL=http://public-repo-1.hortonworks.com/HDP/$OS/2.x/updates/$HDP_VERSION/hdp.repo
