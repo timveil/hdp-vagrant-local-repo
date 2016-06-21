@@ -17,9 +17,19 @@ Vagrant.configure("2") do |config|
     config.vbguest.no_remote = true
     config.vbguest.no_install = false
 
-    config.vm.provision "Create Local Repo", type:  "shell", inline: $createRepo
+    config.vm.provision "Update /etc/hosts File", type: "shell", inline: $hostsFile
+    config.vm.provision "Create Local Repo", type: "shell", inline: $createRepo
 
 end
+
+$hostsFile = <<SCRIPT
+cat > /etc/hosts <<EOF
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+192.168.7.201   repo.hdp.local
+EOF
+SCRIPT
 
 $createRepo = <<SCRIPT
 
