@@ -22,7 +22,7 @@ RAM | 1024 MB
 CPUs | 1
 
 ## How to Run
-Assuming Vagrant and Virtual box are properly installed and you have cloned this repo locally, you can create the local YUM repo instance by running `vagrant up`.  This process usually takes about 20 minutes based on hardware and network connectivity.  Keep in mind that you will need to update the `Hosts` file on your machine with the `hostname` and `ip` specified in the `Vagrantfile`.
+Assuming Vagrant and Virtual box are properly installed and you have cloned this repo locally, you can create the local YUM repo instance by running `vagrant up`.  This process usually takes about 20 minutes based on hardware and network connectivity.  Keep in mind that you will need to manually update the `Hosts` file on your machine with the `hostname` and `ip` specified in the `Vagrantfile`.
 
 ## How to Customize
 The `Vagrantfile` uses the following properties to control the content of the local YUM repo.  You may adjust as necessary.
