@@ -14,6 +14,7 @@ hdp.repo.utils.base=
 
 By default, the local repo Vagrant image will have the following configuration:
 
+Property | Value
 ------------ | -------------
 Hostaname | repo.hdp.local
 IP | 192.168.7.201
