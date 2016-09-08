@@ -1,7 +1,7 @@
 # HDP Vagrant Local Repo
 
 ## Overview
-This project provides a quick and easy way to build a small local HDP repo using Vagrant.  This can be very useful if you use Vagrant frequently for testing, as it saves the overhead of reaching out to the internet for each and every download.  This can be easily paired with my (HDP Vagrant Generator)[https://github.com/timveil/hdp-vagrant-generator] project by updating the following properties in that project.  For example, updating these values in `application.properties` would allow you to generate your Vagrant image using this project as the local repo.
+This project provides a quick and easy way to build a small local HDP repo using Vagrant.  This can be very useful if you use Vagrant frequently for testing, as it saves the overhead of reaching out to the internet for each and every download.  This can be easily paired with my [HDP Vagrant Generator](https://github.com/timveil/hdp-vagrant-generator) project by updating the following properties in that project.  For example, updating these values in `application.properties` would allow you to generate your Vagrant image using this project as the local repo.
 
 ```dosini
 # Custom Base URL for HDP Repo (ex. "http://repo.hdp.local/hdp/centos7/HDP-2.5.0.0")
