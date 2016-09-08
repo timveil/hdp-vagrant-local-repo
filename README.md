@@ -28,11 +28,13 @@ Assuming, Vagrant is properly installed you can create the the local repo image 
 The `Vagrantfile` uses the following properties to control the content of the local repo.  You may adjust as necessary.
 
 ```rb
+...
 OS=centos7
 HDP_VERSION=2.5.0.0
 AMBARI_VERSION=2.4.0.1
 HDP_UTILS_VERSION=1.1.0.21
 REPO_BASE=repo.hdp.local
+...
 ```
 
 Below is the full `Vagrantfile` for reference:
