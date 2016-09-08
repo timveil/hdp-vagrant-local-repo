@@ -17,8 +17,8 @@ By default, the local repo Vagrant image will have the following configuration:
 Property | Value
 ------------ | -------------
 Hostaname | repo.hdp.local
-IP | 192.168.7.201
-Memory | 1024 MB
+IP Address | 192.168.7.201
+RAM | 1024 MB
 CPUs | 1
 
 ## How to Run
