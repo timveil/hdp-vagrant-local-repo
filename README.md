@@ -1,7 +1,7 @@
 # Local YUM Repository for HDP using Vagrant
 
 ## Overview
-This project provides a quick and easy way to build a small, local YUM repo for the Hortonworks Data Platform (HDP) using Vagrant.  This fairly closely mirrors the official Hortonworks Documentation found [here](https://docs.hortonworks.com/HDPDocuments/Ambari-2.4.0.1/bk_ambari-installation/content/getting_started_setting_up_a_local_repository.html).  Building and referring to a local YUM repository can be very useful if you have limited bandwidth or an unreliable internet connection.  It can also significantly reduce your data plan consumption if you are frequently building Hadoop clusters like I am.  This can be easily paired with my [HDP Vagrant Generator](https://github.com/timveil/hdp-vagrant-generator) project by updating that projects `application.properties` file.  For example, updating these values in `application.properties` would allow you to generate your Vagrant image using your freshly built local YUM Repository.
+This project provides a quick and easy way to build a small, local YUM repo for the Hortonworks Data Platform (HDP) using Vagrant.  This fairly closely mirrors the official Hortonworks Documentation found [here](https://docs.hortonworks.com/HDPDocuments/Ambari-2.4.0.1/bk_ambari-installation/content/getting_started_setting_up_a_local_repository.html).  Building and referring to a local YUM repository can be very useful if you have limited bandwidth or an unreliable internet connection.  It can also significantly reduce your data plan consumption if you are frequently building Hadoop clusters like I am.  This can be easily paired with my [HDP Vagrant Generator](https://github.com/timveil/hdp-vagrant-generator) project by updating that projects `application.properties` file.  For example, updating the below values in `application.properties` would allow you to generate your Vagrant image using your freshly built local YUM Repository.
 
 ```dosini
 # Custom Base URL for HDP Repo (ex. "http://repo.hdp.local/hdp/centos7/HDP-2.5.0.0")
@@ -22,10 +22,10 @@ RAM | 1024 MB
 CPUs | 1
 
 ## How to Run
-Assuming, Vagrant is properly installed you can create the the local repo image by running `vagrant up`.  The process usually takes about 20 minutes based on hardware and network connectivity.  Keep in mind that you will need to update your Hosts file on your host environment to properly recognize the hostname.
+Assuming Vagrant and Virtual box are properly installed and you have cloned this repo locally, you can create the local YUM repo instance by running `vagrant up`.  This process usually takes about 20 minutes based on hardware and network connectivity.  Keep in mind that you will need to update the `Hosts` file on your machine with the `hostname` and `ip` specified in the `Vagrantfile`.
 
 ## How to Customize
-The `Vagrantfile` uses the following properties to control the content of the local repo.  You may adjust as necessary.
+The `Vagrantfile` uses the following properties to control the content of the local YUM repo.  You may adjust as necessary.
 
 ```rb
 ...
