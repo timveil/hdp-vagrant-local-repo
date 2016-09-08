@@ -1,4 +1,4 @@
-# HDP Local YUM Repository
+# Local YUM Repository for Hortonworks Data Platform (HDP) using Vagrant
 
 ## Overview
 This project provides a quick and easy way to build a small, local YUM repo for the Hortonworks Data Platform (HDP) using Vagrant.  This fairly closely mirrors the official Hortonworks Documentation found [here](https://docs.hortonworks.com/HDPDocuments/Ambari-2.4.0.1/bk_ambari-installation/content/getting_started_setting_up_a_local_repository.html).  Building and referring to a local YUM repository can be very useful if you have limited bandwidth or an unreliable internet connection.  It can also significantly reduce your data plan consumption if you are frequently building Hadoop clusters like I am.  This can be easily paired with my [HDP Vagrant Generator](https://github.com/timveil/hdp-vagrant-generator) project by updating that projects `application.properties` in that project.  For example, updating these values in `application.properties` would allow you to generate your Vagrant image using your freshly built local YUM Repository.
