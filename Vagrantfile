@@ -5,8 +5,9 @@ Vagrant.configure("2") do |config|
     config.vm.box = "timveil/centos7-hdp-base"
     config.vm.box_check_update = true
 
-    config.vm.hostname = 'repo.hdp.local'
-    config.vm.network "private_network", ip: '192.168.7.201'
+    # config.vm.hostname is broken in vagrant 1.9.0
+    # config.vm.hostname = 'repo.hdp.local'
+    config.vm.network "private_network", ip: '192.168.7.101'
     config.vm.provider "virtualbox" do |v|
       v.name = 'repo.hdp.local'
       v.memory = 1024
@@ -27,20 +28,23 @@ cat > /etc/hosts <<EOF
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
 
-192.168.7.201   repo.hdp.local
+192.168.7.101   repo.hdp.local repo
 EOF
 SCRIPT
 
 $createRepo = <<SCRIPT
 
 OS=centos7
-HDP_VERSION=2.5.0.0
-AMBARI_VERSION=2.4.0.1
+HDP_VERSION=2.5.3.0
+AMBARI_VERSION=2.4.2.0
 HDP_UTILS_VERSION=1.1.0.21
-REPO_BASE=repo.hdp.local
+FQDN=repo.hdp.local
+HOSTNAME=repo
 
 AMBARI_REPO_URL=http://public-repo-1.hortonworks.com/ambari/$OS/2.x/updates/$AMBARI_VERSION/ambari.repo
 HDP_REPO_URL=http://public-repo-1.hortonworks.com/HDP/$OS/2.x/updates/$HDP_VERSION/hdp.repo
+
+hostnamectl --static set-hostname $HOSTNAME
 
 yum update -y -q
 
@@ -73,14 +77,14 @@ mkdir -p repos/$OS/ambari/$AMBARI_VERSION
 cat > /var/www/html/repos/$OS/hdp/$HDP_VERSION/hdp.repo <<EOL
 [HDP-${HDP_VERSION}]
 name=HDP Version - HDP-${HDP_VERSION}
-baseurl=http://${REPO_BASE}/hdp/$OS/HDP-${HDP_VERSION}
+baseurl=http://${FQDN}/hdp/$OS/HDP-${HDP_VERSION}
 enabled=1
 priority=1
 gpgcheck=0
 
 [HDP-UTILS-${HDP_UTILS_VERSION}]
 name=Hortonworks Data Platform Utils Version - HDP-UTILS-${HDP_UTILS_VERSION}
-baseurl=http://${REPO_BASE}/hdp/$OS/HDP-UTILS-${HDP_UTILS_VERSION}
+baseurl=http://${FQDN}/hdp/$OS/HDP-UTILS-${HDP_UTILS_VERSION}
 enabled=1
 priority=1
 gpgcheck=0
@@ -89,13 +93,13 @@ EOL
 cat > /var/www/html/repos/$OS/ambari/$AMBARI_VERSION/ambari.repo <<EOL
 [Updates-ambari-${AMBARI_VERSION}]
 name=ambari-${AMBARI_VERSION} - Updates
-baseurl=http://${REPO_BASE}/ambari/$OS/Updates-ambari-${AMBARI_VERSION}
+baseurl=http://${FQDN}/ambari/$OS/Updates-ambari-${AMBARI_VERSION}
 enabled=1
 priority=1
 gpgcheck=0
 EOL
 
-echo "Ambari repo url = http://$REPO_BASE/repos/$OS/ambari/$AMBARI_VERSION/ambari.repo"
-echo "HDP repo url = http://$REPO_BASE/repos/$OS/hdp/$HDP_VERSION/hdp.repo"
+echo "Ambari repo url = http://$FQDN/repos/$OS/ambari/$AMBARI_VERSION/ambari.repo"
+echo "HDP repo url = http://$FQDN/repos/$OS/hdp/$HDP_VERSION/hdp.repo"
 
 SCRIPT
